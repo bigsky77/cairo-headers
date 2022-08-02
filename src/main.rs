@@ -9,7 +9,6 @@ fn main(){
     let mut y = "=============================="; 
     let mut z = "==============================";
    
-
     // cleaner if just one line.  Need to clean up.
     let output = format!(
            "{}{}{}\n{}{}{}{}\n{}{}{}",
