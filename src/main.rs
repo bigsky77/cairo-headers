@@ -1,5 +1,5 @@
 use std::env;
-use clipboard::{ClipboardContext, ClipboardProvider};
+use cli_clipboard::{ClipboardContext, ClipboardProvider};
 
 fn main(){
     let input = env::args().collect::<Vec<String>>()[1..].join(" ");
@@ -15,9 +15,11 @@ fn main(){
 
     println!("{}", output);
 
-    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+    let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
+    
+    ctx.set_contents(output.to_owned()).unwrap();
 
-    ctx.set_contents(output).unwrap();
-
+    assert_eq!(ctx.get_contents().unwrap(), output);
 }
+
 
