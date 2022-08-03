@@ -27,9 +27,9 @@ fn main() {
     if opt.arg == SubCommand::F {
         let output = format!(
             "{}\n{}\n{}",
-            "## @notice",
-            "## @dev",
-            "## @param",
+            "# notice",
+            "# dev",
+            "# param",
             );
 
         println!("{}", output);
@@ -39,15 +39,18 @@ fn main() {
         ctx.set_contents(output.to_owned()).unwrap();
     
     } else if opt.arg == SubCommand::L {
+        let input = opt.header;  
+       
+        if (input.len()%2)==0 {
         let output = format!(
             "{}{}{}{}{}{}{}",
             "###",
             " ",
-            "==================",
+            (0..(32 - input.len()) / 2).map(|_| "=").collect::<String>(),
             " ",
-            opt.header,
+            input,
             " ",
-            "==================",
+            (0..(32 - input.len()) / 2).map(|_| "=").collect::<String>(),
             );
 
         println!("{}", output);
@@ -55,6 +58,25 @@ fn main() {
         let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
     
         ctx.set_contents(output.to_owned()).unwrap();
+        }
+        else {
+        let output = format!(
+            "{}{}{}{}{}{}{}",
+            "###",
+            " ",
+            (0..(32 - input.len()) / 2).map(|_| "=").collect::<String>(),
+            " ",
+            input,
+            " ",
+            (0..((32 - input.len()) / 2) + 1).map(|_| "=").collect::<String>(),
+            );
+
+        println!("{}", output);
+
+        let mut ctx: ClipboardContext = ClipboardContext::new().unwrap();
+    
+        ctx.set_contents(output.to_owned()).unwrap();
+        };
 
     } else {
         let input = opt.header;
@@ -63,14 +85,14 @@ fn main() {
         "{}{}{}\n{}{}{}{}\n{}{}{}",
         "###",
         " ",
-        "==============================",
+        "==================================",
         "###",
         " ",
-        (0..(32 - input.len()) / 2).map(|_| " ").collect::<String>(),
+        (0..(34 - input.len()) / 2).map(|_| " ").collect::<String>(),
         input.to_uppercase(),
         "###",
         " ",
-        "==============================",
+        "==================================",
         );
         
         println!("{}", output);
