@@ -21,11 +21,38 @@ xes0-dev
 
 ## Use
 
+This program has three basic commands 
+
+L is used for line.  
+
 ```sh
-bigsky \cairo-headers test
+bigsky /headers l tempest
 ```
 
 ```sh
-### ============ TEST ============
+### ============ tempest =============
 ```
 
+H is used for headers
+
+```sh
+bigsky /headers h tempest
+```
+
+```sh
+### ==================================
+###              TEMPEST
+### ==================================
+```
+
+and F is used for functions
+
+```sh
+bigsky /headers f 
+```
+
+```sh
+# notice
+# dev
+# param
+```
